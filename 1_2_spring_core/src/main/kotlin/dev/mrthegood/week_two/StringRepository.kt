@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository
  * Copyright © 2020 Maarten de Goede. All rights reserved.
  */
 @Repository
-object StringRepository {
+class StringRepository {
 
     @Autowired
     private lateinit var stringService: StringService

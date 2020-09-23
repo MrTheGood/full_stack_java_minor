@@ -16,6 +16,8 @@ class MainController {
 
     @Autowired
     private lateinit var stringService: StringService
+    @Autowired
+    private lateinit var stringRepository: StringRepository
 
 
     @GetMapping("/reverse/{input}")
@@ -26,5 +28,5 @@ class MainController {
     @GetMapping("/count/{input}")
     @ResponseBody
     fun getCount(@PathVariable input: String) =
-        StringRepository.count(input)
+        stringRepository.count(input)
 }
