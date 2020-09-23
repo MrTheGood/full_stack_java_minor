@@ -14,8 +14,9 @@ class StringRepository {
     @Autowired
     private lateinit var stringService: StringService
 
-    private val counted = mutableMapOf<String, Int>()
+    private val _counted = mutableMapOf<String, Int>()
+    val counted: Map<String, Int> get() = _counted
 
     fun count(input: String) =
-        counted.getOrPut(input) { stringService.count(input) }
+        _counted.getOrPut(input) { stringService.count(input) }
 }
