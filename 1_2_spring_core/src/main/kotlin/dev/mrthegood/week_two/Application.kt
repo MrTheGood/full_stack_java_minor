@@ -9,8 +9,4 @@ class Application
 
 fun main(args: Array<String>) {
     runApplication<Application>(*args)
-
-    val appContext = AnnotationConfigApplicationContext()
-    appContext.environment.setActiveProfiles("caps")
-    appContext.refresh()
 }
