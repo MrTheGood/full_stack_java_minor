@@ -6,5 +6,5 @@ package dev.mrthegood.week_two.service
  */
 abstract class StringService {
     abstract fun reverse(string: String): String
-    fun count(string: String) = string.count { it == ' ' } + 1
+    open fun count(string: String) = string.count { it == ' ' } + 1
 }

@@ -29,25 +29,27 @@ class StringRepositoryTests {
     @Test
     fun `ensure storage is updated`() {
         // Given
-        `when`(stringServiceMock.count("Test")).then { 4 }
+        val input = "Test Word Count"
+        `when`(stringServiceMock.count(input)).then { 3 }
 
         // When
-        stringRepository.count("Test")
+        stringRepository.count(input)
 
         // Then
-        assert(stringRepository.counted.containsKey("Test"))
-        assert(stringRepository.counted["Test"] == 4)
+        assert(stringRepository.counted.containsKey(input))
+        assert(stringRepository.counted[input] == 3)
     }
 
     @Test
     fun `ensure StringService is called`() {
         // Given
-        `when`(stringServiceMock.count("Call")).then { 4 }
+        val input = "Call Function Test"
+        `when`(stringServiceMock.count(input)).then { 3 }
 
         // When
-        stringRepository.count("Call")
+        stringRepository.count(input)
 
         // Then
-        verify(stringServiceMock).count("Call")
+        verify(stringServiceMock).count(input)
     }
 }
