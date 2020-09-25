@@ -9,9 +9,8 @@ import org.springframework.stereotype.Service
  */
 @Service
 @Profile("caps")
-class CapsStringService : StringService {
+class CapsStringService : StringService() {
 
     override fun reverse(string: String) = string.toUpperCase()
-    override fun count(string: String) = string.count()
 
 }

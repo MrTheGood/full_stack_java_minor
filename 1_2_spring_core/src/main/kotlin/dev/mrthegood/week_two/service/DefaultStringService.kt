@@ -1,6 +1,5 @@
 package dev.mrthegood.week_two.service
 
-import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Service
 
 /**
@@ -8,10 +7,8 @@ import org.springframework.stereotype.Service
  * Copyright © 2020 Maarten de Goede. All rights reserved.
  */
 @Service
-@Profile("!caps")
-class DefaultStringService : StringService {
+class DefaultStringService : StringService() {
 
     override fun reverse(string: String) = string.reversed()
-    override fun count(string: String) = string.count()
 
 }
