@@ -3,14 +3,17 @@ package dev.mrthegood.week_two
 import dev.mrthegood.week_two.service.CapsStringService
 import dev.mrthegood.week_two.service.DefaultStringService
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.InjectMocks
-import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.junit.jupiter.SpringExtension
 
 /**
  * Created by maartendegoede on 24/09/2020.
  * Copyright © 2020 Maarten de Goede. All rights reserved.
  */
-@SpringBootTest
+@ExtendWith(SpringExtension::class)
+@ContextConfiguration(classes = [DefaultStringService::class, CapsStringService::class])
 class StringServiceTests {
     @InjectMocks
     lateinit var defaultStringService: DefaultStringService
@@ -41,10 +44,10 @@ class StringServiceTests {
     }
 
     @Test
-    fun `ensure count characters are counted`() {
+    fun `ensure StringService_count words are counted`() {
         // Given
         // When
-        val result = defaultStringService.count("Test")
+        val result = defaultStringService.count("Test Word Count Correct")
 
         // Then
         assert(result == 4)
