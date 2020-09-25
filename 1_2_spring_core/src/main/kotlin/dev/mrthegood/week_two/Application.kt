@@ -2,7 +2,6 @@ package dev.mrthegood.week_two
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 @SpringBootApplication
 class Application

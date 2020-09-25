@@ -1,7 +1,6 @@
 package dev.mrthegood.week_two
 
 import dev.mrthegood.week_two.service.StringService
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 
 /**
@@ -9,10 +8,9 @@ import org.springframework.stereotype.Repository
  * Copyright © 2020 Maarten de Goede. All rights reserved.
  */
 @Repository
-class StringRepository {
-
-    @Autowired
-    private lateinit var stringService: StringService
+class StringRepository(
+    val stringService: StringService
+) {
 
     private val _counted = mutableMapOf<String, Int>()
     val counted: Map<String, Int> get() = _counted
