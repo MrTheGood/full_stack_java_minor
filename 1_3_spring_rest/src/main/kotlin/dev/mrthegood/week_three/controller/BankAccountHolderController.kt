@@ -4,7 +4,7 @@ import dev.mrthegood.week_three.models.BankAccount
 import dev.mrthegood.week_three.models.BankAccountHolder
 import dev.mrthegood.week_three.services.BankAccountHolderService
 import dev.mrthegood.week_three.util.exception.BankAccountHolderNotFoundException
-import dev.mrthegood.week_three.util.exception.BankAccountNotFoundException
+import dev.mrthegood.week_three.util.exception.IllegalBankAccountHolderException
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
@@ -37,15 +37,17 @@ class BankAccountHolderController(
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     fun createBankAccountHolder(@RequestBody accountHolder: BankAccountHolder): Long {
+        if (accountHolder.firstname.isBlank() || accountHolder.lastname.isBlank())
+            throw IllegalBankAccountHolderException("Account holder `${accountHolder.id}` cannot be created. Name cannot be blank")
         return service.createBankAccountHolder(accountHolder)
     }
-
-    //todo: validatie op input
 
     @PutMapping("")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     fun updateBankAccountHolder(@RequestBody accountHolder: BankAccountHolder) {
+        if (accountHolder.firstname.isBlank() || accountHolder.lastname.isBlank())
+            throw IllegalBankAccountHolderException("Account holder `${accountHolder.id}` cannot be updated. Name cannot be blank")
         service.updateBankAccountHolder(accountHolder)
     }
 
