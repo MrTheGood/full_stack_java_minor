@@ -1,17 +1,32 @@
 package dev.mrthegood.week_four.models
 
-import dev.mrthegood.week_four.util.extensions.randomLong
+import javax.persistence.*
 
 
 /**
  * Created by maartendegoede on 05/10/2020.
  * Copyright © 2020 Maarten de Goede. All rights reserved.
  */
-data class BankAccount(
-    val iBAN: String,
-    var saldo: Long? = null,
-    val accountHolders: List<BankAccountHolder>,
-    var isBlocked: Boolean = false,
-) {
-    val id: Long = randomLong()
+@Entity
+@Table(name = "bankAccounts")
+class BankAccount : BaseEntity() {
+    lateinit var iBAN: String
+
+
+    @ManyToMany(
+        fetch = FetchType.LAZY,
+        cascade = [
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+        ],
+    )
+    @JoinTable(
+        name = "bankAccount_accountholders",
+        joinColumns = [JoinColumn(name = "accountId")],
+        inverseJoinColumns = [JoinColumn(name = "holderId")]
+    )
+    lateinit var accountHolders: MutableList<BankAccountHolder>
+
+    var saldo: Long? = null
+    var isBlocked: Boolean = false
 }

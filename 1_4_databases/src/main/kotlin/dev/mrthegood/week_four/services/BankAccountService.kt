@@ -3,7 +3,6 @@ package dev.mrthegood.week_four.services
 import dev.mrthegood.week_four.models.BankAccount
 import dev.mrthegood.week_four.repository.BankAccountRepository
 import org.springframework.stereotype.Service
-import java.lang.IllegalStateException
 
 
 /**
@@ -14,22 +13,21 @@ import java.lang.IllegalStateException
 class BankAccountService(
     private val repository: BankAccountRepository
 ) {
-    val bankAccounts: List<Any> get() = repository.findAll()
+    val bankAccounts: List<Any> get() = repository.findAll().toList()
 
-    fun getBankAccount(id: Long) = repository.find(id)
+    fun getBankAccount(id: Long): BankAccount? = repository.findById(id).orElse(null)
 
-    fun createAccount(bankAccount: BankAccount) = repository.save(bankAccount)?.id
-        ?: throw IllegalStateException("Duplicate IDs generated")
+    fun createAccount(bankAccount: BankAccount) = repository.save(bankAccount).id()
 
     fun updateAccount(bankAccount: BankAccount) {
-        repository.update(bankAccount)
+        repository.save(bankAccount)
     }
 
     fun blockAccount(bankAccount: BankAccount) {
         bankAccount.isBlocked = true
-        repository.update(bankAccount)
+        repository.save(bankAccount)
     }
 
     fun deleteAccount(account: BankAccount) = repository.delete(account)
-    fun deleteAccount(id: Long) = repository.delete(id)
+    fun deleteAccount(id: Long) = repository.deleteById(id)
 }
