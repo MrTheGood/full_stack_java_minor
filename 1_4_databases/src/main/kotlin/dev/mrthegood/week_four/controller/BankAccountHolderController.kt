@@ -3,10 +3,10 @@ package dev.mrthegood.week_four.controller
 import dev.mrthegood.week_four.models.BankAccountHolder
 import dev.mrthegood.week_four.services.BankAccountHolderService
 import dev.mrthegood.week_four.util.exception.BankAccountHolderNotFoundException
-import dev.mrthegood.week_four.util.exception.IllegalBankAccountHolderException
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.net.URI
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("BankAccountHolder")
@@ -29,19 +29,14 @@ class BankAccountHolderController(
 
 
     @PostMapping("")
-    fun createBankAccountHolder(@RequestBody accountHolder: BankAccountHolder): ResponseEntity<Long> {
-        if (accountHolder.firstname.isBlank() || accountHolder.lastname.isBlank())
-            throw IllegalBankAccountHolderException("Account holder `${accountHolder.id}` cannot be created. Name cannot be blank")
-
+    fun createBankAccountHolder(@Valid @RequestBody accountHolder: BankAccountHolder): ResponseEntity<Long> {
         val id = service.createBankAccountHolder(accountHolder)
         return ResponseEntity.created(URI("/$id")).apply { body(id) }.build()
     }
 
 
     @PutMapping("")
-    fun updateBankAccountHolder(@RequestBody accountHolder: BankAccountHolder) {
-        if (accountHolder.firstname.isBlank() || accountHolder.lastname.isBlank())
-            throw IllegalBankAccountHolderException("Account holder `${accountHolder.id}` cannot be updated. Name cannot be blank")
+    fun updateBankAccountHolder(@Valid @RequestBody accountHolder: BankAccountHolder) {
         service.updateBankAccountHolder(accountHolder)
     }
 

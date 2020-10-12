@@ -1,6 +1,8 @@
 package dev.mrthegood.week_four.models
 
 import javax.persistence.*
+import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotEmpty
 
 
 /**
@@ -10,9 +12,11 @@ import javax.persistence.*
 @Entity
 @Table(name = "bankAccounts")
 class BankAccount : BaseEntity() {
+    @NotBlank(message = "iBAN cannot be blank")
     lateinit var iBAN: String
 
 
+    @NotEmpty(message = "At least one accountHolders")
     @ManyToMany(
         fetch = FetchType.LAZY,
         cascade = [

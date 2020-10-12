@@ -3,10 +3,10 @@ package dev.mrthegood.week_four.controller
 import dev.mrthegood.week_four.models.BankAccount
 import dev.mrthegood.week_four.services.BankAccountService
 import dev.mrthegood.week_four.util.exception.BankAccountNotFoundException
-import dev.mrthegood.week_four.util.exception.IllegalBankAccountException
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.net.URI
+import javax.validation.Valid
 
 
 @RestController
@@ -26,24 +26,14 @@ class BankAccountController(
 
 
     @PostMapping("")
-    fun createAccount(@RequestBody account: BankAccount): ResponseEntity<Long> {
-        if (account.iBAN.isBlank())
-            throw IllegalBankAccountException("Account holder `${account.id}` cannot be created. IBAN cannot be blank")
-        if (account.accountHolders.isEmpty())
-            throw IllegalBankAccountException("Account holder `${account.id}` cannot be created. Requires at least 1 account holder")
-
+    fun createAccount(@Valid @RequestBody account: BankAccount): ResponseEntity<Long> {
         val id = bankAccountService.createAccount(account)
         return ResponseEntity.created(URI("/$id")).apply { body(id) }.build()
     }
 
 
     @PutMapping("")
-    fun updateAccount(@RequestBody account: BankAccount) {
-        if (account.iBAN.isBlank())
-            throw IllegalBankAccountException("Account holder `${account.id}` cannot be updated. IBAN cannot be blank")
-        if (account.accountHolders.isEmpty())
-            throw IllegalBankAccountException("Account holder `${account.id}` cannot be updated. Requires at least 1 account holder")
-
+    fun updateAccount(@Valid @RequestBody account: BankAccount) {
         bankAccountService.updateAccount(account)
     }
 
