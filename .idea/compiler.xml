@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="1_3_spring_rest" target="11" />
+      <module name="1_3_spring_rest.main" target="11" />
+      <module name="1_3_spring_rest.test" target="11" />
+      <module name="1_4_databases" target="11" />
+      <module name="1_4_databases.main" target="11" />
+      <module name="1_4_databases.test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
