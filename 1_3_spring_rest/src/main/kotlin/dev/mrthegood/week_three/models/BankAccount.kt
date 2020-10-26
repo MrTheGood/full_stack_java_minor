@@ -1,9 +1,6 @@
 package dev.mrthegood.week_three.models
 
 import dev.mrthegood.week_three.util.extensions.randomLong
-import java.util.*
-import javax.validation.constraints.NotEmpty
-import javax.validation.constraints.NotNull
 
 
 /**
