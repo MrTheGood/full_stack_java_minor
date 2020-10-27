@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
-  <component name="ExternalSystem" externalSystem="GRADLE" externalSystemModuleGroup="dev.mrthegood" externalSystemModuleType="sourceSet" externalSystemModuleVersion="0.0.1" linkedProjectId="1_2_spring_core:main" linkedProjectPath="$MODULE_DIR$/../../1_2_spring_core" rootProjectPath="$MODULE_DIR$/../../1_2_spring_core" />
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
       <configuration />
