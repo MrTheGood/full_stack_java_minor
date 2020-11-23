@@ -7,8 +7,10 @@
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/1_2_spring_core" />
     <file type="web" url="file://$PROJECT_DIR$/1_3_spring_rest" />
     <file type="web" url="file://$PROJECT_DIR$/1_4_databases" />
+    <file type="web" url="file://$PROJECT_DIR$/1_5_3lagen" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_3" default="false" project-jdk-name="12" project-jdk-type="JavaSDK" />
 </project>
